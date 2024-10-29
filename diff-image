@@ -263,14 +263,14 @@ then
       echo "Copy diff image to $outputPath"
       cp "$destfile" "$outputPath"
     else
-      xdg-open "$destfile"
+      echo "img:$destfile"
     fi
 else
     w=$(exiftool -p '$ImageWidth' "$f1" || true)
     if [[ $w -ge 10000 ]]
     then
         cp "$f1" "$destfile"
-        exec open "$destfile" "$f2"
+        echo "img:$destfile"
     else
         do_compare
         if [ -n "$outputPath" ]
@@ -278,7 +278,7 @@ else
           echo "Copy diff image to $outputPath"
           cp "$destfile" "$outputPath"
         else
-          exec open "$destfile"
+          echo "img:$destfile"
         fi
     fi
 fi

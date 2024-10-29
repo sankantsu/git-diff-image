@@ -56,11 +56,9 @@ readlink_f()
 thisdir="$(dirname $(readlink_f "$0"))"
 
 e_flag=''
-if [ -z "${GIT_DIFF_IMAGE_ENABLED-}" ] || \
-   ! which compare > /dev/null || \
-   ! which montage > /dev/null
-then
-  e_flag='-e'
+if ! which compare > /dev/null || ! which montage > /dev/null; then
+      # exif only if `compare` of `montage` is unavailable
+      e_flag='-e'
 fi
 
 o_flag=''
